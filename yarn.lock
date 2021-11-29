@@ -1739,7 +1739,7 @@
     "lz-string" "^1.4.4"
     "pretty-format" "^27.0.2"
 
-"@testing-library/jest-dom@^5.11.4":
+"@testing-library/jest-dom@^5.15.1":
   "integrity" "sha512-kmj8opVDRE1E4GXyLlESsQthCXK7An28dFWxhiMwD7ZUI7ZxA6sjdJRxLerD9Jd8cHX4BDc1jzXaaZKqzlUkvg=="
   "resolved" "https://registry.npmjs.org/@testing-library/jest-dom/-/jest-dom-5.15.1.tgz"
   "version" "5.15.1"
