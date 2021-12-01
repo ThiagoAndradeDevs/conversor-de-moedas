@@ -48,11 +48,13 @@ function ConversorMoedas() {
       .then(res => {
         const cotacao = obterCotacao(res.data);
         setResultadoCotacao(`${valor} ${moedaDe} = ${cotacao} ${moedaPara}`);
+        setExibirModal(true);
+        setExibirSpiner(false);
       })
   }
   function obterCotacao() {
     if (!dadosCotacao || dadosCotacao.success !== true) {
-      return false
+      return false;
     }
     const cotacaoDe = dadosCotacao.rates[moedaDe];
     const cotacaoPara = dadosCotacao.rate[moedaPara];
