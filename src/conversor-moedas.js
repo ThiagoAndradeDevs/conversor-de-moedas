@@ -59,6 +59,7 @@ function ConversorMoedas() {
             <h3 sm="2">
               <Button variant="success" type="submit" >
                 <Spinner animation="border" size="sm" />
+                Converter
               </Button>
             </h3>
             <Modal show={false}>
