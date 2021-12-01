@@ -7,6 +7,7 @@ import { Button, Form, Col, Spinner, Alert, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css'
+import ListarMoedas from './listar-moedas';
 
 
 function ConversorMoedas() {
@@ -24,14 +25,20 @@ function ConversorMoedas() {
               <Form.Control placeholder="0" value={1} required />
             </h3>
             <h3 sm="3">
-              <Form.Control as="select" />
+              <Form.Control as="select">
+                <ListarMoedas></ListarMoedas>
+              </Form.Control>
+
             </h3>
             <h3 sm="1"
               className="text-center" style={{ paddingTop: "5px" }}>
               <FontAwesomeIcon icon={faAngleDoubleRight} />
             </h3>
             <h3 sm="3">
-              <Form.Control as="select" />
+              <Form.Control as="select">
+                <ListarMoedas></ListarMoedas>
+              </Form.Control>
+
             </h3>
             <h3 sm="2">
               <Button variant="success" type="submit" >
