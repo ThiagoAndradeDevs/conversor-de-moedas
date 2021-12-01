@@ -12,6 +12,7 @@ import ListarMoedas from './listar-moedas';
 
 
 function ConversorMoedas() {
+  const FIXER_URL = 'http://data.fixer.io/api/ latest? access_key = ba6178d5eb9814fb9af2c0c6ec23045d';
   const [valor, setValor] = useState('1')
   const [moedaDe, setMoedaDe] = useState('BRL')
   const [moedaPara, setMoedaPara] = useState('USD')
