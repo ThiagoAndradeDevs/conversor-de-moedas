@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable react/jsx-pascal-case */
@@ -9,6 +10,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
 import './../node_modules/bootstrap/dist/css/bootstrap.min.css'
 import ListarMoedas from './listar-moedas';
+import axios from 'axios';
 
 
 function ConversorMoedas() {
@@ -41,7 +43,21 @@ function ConversorMoedas() {
   function converter(event) {
     event.preventDefault();
     setFormValidado(true);
-
+    setExibirSpiner(true);
+    axios.get(FIXER_URL)
+      .then(res => {
+        const cotacao = obterCotacao(res.data);
+        setResultadoCotacao(`${valor} ${moedaDe} = ${cotacao} ${moedaPara}`);
+      })
+  }
+  function obterCotacao() {
+    if (!dadosCotacao || dadosCotacao.success !== true) {
+      return false
+    }
+    const cotacaoDe = dadosCotacao.rates[moedaDe];
+    const cotacaoPara = dadosCotacao.rate[moedaPara];
+    const cotacao = (1 / cotacaoDe * cotacaoPara) * valor;
+    return cotacao.toFixed(2);
   }
   return (
     <div>
