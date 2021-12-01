@@ -3,14 +3,20 @@
 /* eslint-disable no-unused-vars */
 import React from 'react'
 import './conversor-moedas.css';
-import { Button, Form, Col, Spinner } from 'react-bootstrap';
+import { Button, Form, Col, Spinner, Alert, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faAngleDoubleRight } from '@fortawesome/free-solid-svg-icons'
+import './../node_modules/bootstrap/dist/css/bootstrap.min.css'
+
 
 function ConversorMoedas() {
   return (
     <div>
       <h1>Conversor de Moedas</h1>
+
+      <Alert variant="danger" show={false}>
+        Erro obtendo dados de conversao, tente novamente.
+      </Alert>
       <div className='jumbo'>
         <Form>
           <h2>
@@ -32,6 +38,17 @@ function ConversorMoedas() {
                 <Spinner animation="border" size="sm" />
               </Button>
             </h3>
+            <Modal show={false}>
+              <Modal.Header closeButton>
+                <Modal.Title>Conversão</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                Resultado da conversão aqui ...
+                </Modal.Body>
+              <Modal.Footer>
+                <Button variant="success">nova conversão</Button>
+              </Modal.Footer>
+            </Modal>
           </h2>
         </Form>
 
