@@ -16,6 +16,11 @@ function ConversorMoedas() {
   const [moedaDe, setMoedaDe] = useState('BRL')
   const [moedaPara, setMoedaPara] = useState('USD')
   const [exibirSpiner, setExibirSpiner] = useState(false);
+  const [formValidado, setFormValidado] = useState(false);
+  const [exibirModal, setExibirModal] = useState(false)
+  const [resultadoConversao, setResultadoConversao] = useState(' ');
+
+
   function handleValor(event) {
     setValor(event.target.value.replace(/\D/g, ' '));
   }
@@ -25,6 +30,18 @@ function ConversorMoedas() {
   function handleMoedaPara(event) {
     setMoedaPara(event.target.value);
   }
+  function handleFecharModal(event) {
+    setValor('1');
+    setMoedaDe('BRL');
+    setMoedaPara('USD');
+    setFormValidado(false);
+    setExibirModal(false);
+  }
+  function converter(event) {
+    event.preventDefault();
+    setFormValidado(true);
+
+  }
   return (
     <div>
       <h1>Conversor de Moedas</h1>
@@ -33,7 +50,7 @@ function ConversorMoedas() {
         Erro obtendo dados de conversao, tente novamente.
       </Alert>
       <div className='jumbo'>
-        <Form>
+        <Form onSubmit={converter} noValidate validated={formValidado}>
           <h2>
             <h3 sm="3">
               <Form.Control placeholder="0" value={valor} onChange={handleValor} required />
@@ -65,15 +82,17 @@ function ConversorMoedas() {
                   Converter</span>
               </Button>
             </h3>
-            <Modal show={false}>
+            <Modal show={exibirModal} onHide={handleFecharModal}>
               <Modal.Header closeButton>
                 <Modal.Title>Conversão</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                Resultado da conversão aqui ...
-                </Modal.Body>
+                {resultadoConversao}
+              </Modal.Body>
               <Modal.Footer>
-                <Button variant="success">nova conversão</Button>
+                <Button variant="success" onClick={handleFecharModal}>
+                  Nova conversão
+                  </Button>
               </Modal.Footer>
             </Modal>
           </h2>
