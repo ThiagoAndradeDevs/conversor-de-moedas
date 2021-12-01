@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable no-unused-vars */
@@ -12,8 +13,12 @@ import ListarMoedas from './listar-moedas';
 
 function ConversorMoedas() {
   const [valor, setValor] = useState('1')
+  const [moedaDe, setMoedaDe] = useState('BRL')
   function handleValor(event) {
-    setValor(event.target.value);
+    setValor(event.target.value.replace(/\D/g, ' '));
+  }
+  function handleMoedaDe(event) {
+    setMoedaDe(event.target.value);
   }
   return (
     <div>
@@ -29,7 +34,8 @@ function ConversorMoedas() {
               <Form.Control placeholder="0" value={valor} onChange={handleValor} required />
             </h3>
             <h3 sm="3">
-              <Form.Control as="select">
+              <Form.Control as="select" value={moedaDe}
+                onChange={handleMoedaDe}>
                 <ListarMoedas></ListarMoedas>
               </Form.Control>
 
