@@ -28,7 +28,9 @@ function ConversorMoedas() {
               <Form.Control as="select" />
             </h3>
             <h3 sm="2">
-              <Button variant="success" type="submit" />
+              <Button variant="success" type="submit" >
+                <Spinner animation="border" size="sm" />
+              </Button>
             </h3>
           </h2>
         </Form>
