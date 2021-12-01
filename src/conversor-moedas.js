@@ -14,11 +14,15 @@ import ListarMoedas from './listar-moedas';
 function ConversorMoedas() {
   const [valor, setValor] = useState('1')
   const [moedaDe, setMoedaDe] = useState('BRL')
+  const [moedaPara, setMoedaPara] = useState('USD')
   function handleValor(event) {
     setValor(event.target.value.replace(/\D/g, ' '));
   }
   function handleMoedaDe(event) {
     setMoedaDe(event.target.value);
+  }
+  function handleMoedaPara(event) {
+    setMoedaPara(event.target.value);
   }
   return (
     <div>
@@ -45,7 +49,9 @@ function ConversorMoedas() {
               <FontAwesomeIcon icon={faAngleDoubleRight} />
             </h3>
             <h3 sm="3">
-              <Form.Control as="select">
+              <Form.Control as="select"
+                value={moedaPara}
+                onChange={handleMoedaPara}>
                 <ListarMoedas></ListarMoedas>
               </Form.Control>
 
