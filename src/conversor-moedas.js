@@ -1,7 +1,7 @@
 /* eslint-disable jsx-a11y/heading-has-content */
 /* eslint-disable react/jsx-pascal-case */
 /* eslint-disable no-unused-vars */
-import React from 'react'
+import React, { useState } from 'react'
 import './conversor-moedas.css';
 import { Button, Form, Col, Spinner, Alert, Modal } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -11,6 +11,10 @@ import ListarMoedas from './listar-moedas';
 
 
 function ConversorMoedas() {
+  const [valor, setValor] = useState('1')
+  function handleValor(event) {
+    setValor(event.target.value);
+  }
   return (
     <div>
       <h1>Conversor de Moedas</h1>
@@ -22,7 +26,7 @@ function ConversorMoedas() {
         <Form>
           <h2>
             <h3 sm="3">
-              <Form.Control placeholder="0" value={1} required />
+              <Form.Control placeholder="0" value={valor} onChange={handleValor} required />
             </h3>
             <h3 sm="3">
               <Form.Control as="select">
