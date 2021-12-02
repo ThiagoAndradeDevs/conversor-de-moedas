@@ -22,6 +22,7 @@ function ConversorMoedas() {
   const [formValidado, setFormValidado] = useState(false);
   const [exibirModal, setExibirModal] = useState(false)
   const [resultadoConversao, setResultadoConversao] = useState(' ');
+  const [exibirMsgErro, setExibirMsgErro] = useState(false)
 
 
   function handleValor(event) {
@@ -48,10 +49,15 @@ function ConversorMoedas() {
       axios.get(FIXER_URL)
         .then(res => {
           const cotacao = obterCotacao(res.data);
-          setResultadoCotacao(`${valor} ${moedaDe} = ${cotacao} ${moedaPara}`);
-          setExibirModal(true);
-          setExibirSpiner(false);
-        })
+          if (cotacao) {
+            setResultadoCotacao(`${valor} ${moedaDe} = ${cotacao} ${moedaPara}`);
+            setExibirModal(true);
+            setExibirSpiner(false);
+            setExibirMsgErro(false);
+          } else {
+            exibirErro();
+          }
+        }).catch(err => exibirErro());
     }
   }
   function obterCotacao() {
@@ -63,11 +69,15 @@ function ConversorMoedas() {
     const cotacao = (1 / cotacaoDe * cotacaoPara) * valor;
     return cotacao.toFixed(2);
   }
+  function exibirErro() {
+    setExibirMsgErro(true);
+    setExibirSpiner(false);
+  }
   return (
     <div>
       <h1>Conversor de Moedas</h1>
 
-      <Alert variant="danger" show={false}>
+      <Alert variant="danger" show={exibirMsgErro}>
         Erro obtendo dados de conversao, tente novamente.
       </Alert>
       <div className='jumbo'>
