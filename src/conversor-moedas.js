@@ -43,14 +43,16 @@ function ConversorMoedas() {
   function converter(event) {
     event.preventDefault();
     setFormValidado(true);
-    setExibirSpiner(true);
-    axios.get(FIXER_URL)
-      .then(res => {
-        const cotacao = obterCotacao(res.data);
-        setResultadoCotacao(`${valor} ${moedaDe} = ${cotacao} ${moedaPara}`);
-        setExibirModal(true);
-        setExibirSpiner(false);
-      })
+    if (event.currentTarget.checkValidity() === true) {
+      setExibirSpiner(true);
+      axios.get(FIXER_URL)
+        .then(res => {
+          const cotacao = obterCotacao(res.data);
+          setResultadoCotacao(`${valor} ${moedaDe} = ${cotacao} ${moedaPara}`);
+          setExibirModal(true);
+          setExibirSpiner(false);
+        })
+    }
   }
   function obterCotacao() {
     if (!dadosCotacao || dadosCotacao.success !== true) {
